@@ -28,6 +28,7 @@ public class DesignRulesTest extends SimpleAggregatorTst {
         addRule(RULESET, "NcssConstructorCount");
         addRule(RULESET, "NcssMethodCount");
         addRule(RULESET, "NcssTypeCount");
+        addRule(RULESET, "NoDmlOutsideOfUnitOfWork");
         addRule(RULESET, "StdCyclomaticComplexity");
         addRule(RULESET, "TooManyFields");
     }

@@ -253,6 +253,27 @@ public class Foo extends Bar {
 ]]>
         </example>
     </rule>
+    
+        <rule name="NoDmlOutsideOfUnitOfWork"
+          since="5.5.0"
+          message="Avoid DML outside of UnitOfWork classes."
+          class="net.sourceforge.pmd.lang.apex.rule.design.NoDmlOutsideOfUnitOfWorkRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#nodmloutsideofunitofwork">
+        <description>
+This rule looks for DML statements outside of UnitOfWork classes.
+        </description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+public class Foo extends Bar {
+    public Foo() {
+        Account fooAccount = new Account();
+        insert fooAccount;
+    }
+}
+]]>
+        </example>
+    </rule>
 
     <rule name="StdCyclomaticComplexity"
           since="5.5.0"

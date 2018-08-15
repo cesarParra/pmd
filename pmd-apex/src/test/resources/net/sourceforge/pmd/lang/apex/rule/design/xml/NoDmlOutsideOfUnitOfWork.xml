@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test-data
+    xmlns="http://pmd.sourceforge.net/rule-tests"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests http://pmd.sourceforge.net/rule-tests_1_0_0.xsd">
+
+    <test-code>
+        <description>No DML at all</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+public class Foo {
+    public void foo() {
+		bar();
+    }
+}
+		]]></code>
+    </test-code>
+    
+    <test-code>
+        <description>DML inside of UnitOfWork</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+public class UnitOfWork {
+    public void foo() {
+		insert new Account();
+    }
+}
+		]]></code>
+    </test-code>
+		
+    <test-code>
+        <description>DML outside of Unit Of Work</description>
+        <expected-problems>1</expected-problems>
+        <code><![CDATA[
+public class Bar {
+    public void foo() {
+		insert new Account();
+    }
+}
+		]]></code>
+    </test-code>
+      
+</test-data>

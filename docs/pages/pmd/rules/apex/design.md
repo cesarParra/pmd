@@ -5,7 +5,7 @@ permalink: pmd_rules_apex_design.html
 folder: pmd/rules/apex
 sidebaractiveurl: /pmd_rules_apex.html
 editmepath: ../pmd-apex/src/main/resources/category/apex/design.xml
-keywords: Design, AvoidDeeplyNestedIfStmts, CyclomaticComplexity, ExcessiveClassLength, ExcessiveParameterList, ExcessivePublicCount, NcssConstructorCount, NcssMethodCount, NcssTypeCount, StdCyclomaticComplexity, TooManyFields
+keywords: Design, AvoidDeeplyNestedIfStmts, CyclomaticComplexity, ExcessiveClassLength, ExcessiveParameterList, ExcessivePublicCount, NcssConstructorCount, NcssMethodCount, NcssTypeCount, NoDmlOutsideOfUnitOfWork, StdCyclomaticComplexity, TooManyFields
 language: Apex
 ---
 ## AvoidDeeplyNestedIfStmts
@@ -376,6 +376,40 @@ public class Foo extends Bar {
 **Use this rule by referencing it:**
 ``` xml
 <rule ref="category/apex/design.xml/NcssTypeCount" />
+```
+
+## NoDmlOutsideOfUnitOfWork
+
+**Since:** PMD 5.5.0
+
+**Priority:** Medium (3)
+
+This rule looks for DML statements outside of UnitOfWork classes.
+
+**This rule is defined by the following Java class:** [net.sourceforge.pmd.lang.apex.rule.design.NoDmlOutsideOfUnitOfWorkRule](https://github.com/pmd/pmd/blob/master/pmd-apex/src/main/java/net/sourceforge/pmd/lang/apex/rule/design/NoDmlOutsideOfUnitOfWorkRule.java)
+
+**Example(s):**
+
+``` java
+public class Foo extends Bar {
+    public Foo() {
+        Account fooAccount = new Account();
+        insert fooAccount;
+    }
+}
+```
+
+**This rule has the following properties:**
+
+|Name|Default Value|Description|Multivalued|
+|----|-------------|-----------|-----------|
+|cc_categories|Style|Code Climate Categories|yes. Delimiter is '\|'.|
+|cc_remediation_points_multiplier|1|Code Climate Remediation Points multiplier|no|
+|cc_block_highlighting|false|Code Climate Block Highlighting|no|
+
+**Use this rule by referencing it:**
+``` xml
+<rule ref="category/apex/design.xml/NoDmlOutsideOfUnitOfWork" />
 ```
 
 ## StdCyclomaticComplexity
